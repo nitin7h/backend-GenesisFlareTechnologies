@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
-    "dev": "tsc-watch --onSuccess \"npm start\""
+    "dev": "tsc-watch --onSuccess \"npm start\"",
+    "start:worker": "tsx src/services/bullMQ/leadWorker.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +22,11 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
+    "bullmq": "^5.56.9",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "ioredis": "^5.7.0",
     "mongoose": "^8.17.0",
     "nodemailer": "^7.0.5"
   }

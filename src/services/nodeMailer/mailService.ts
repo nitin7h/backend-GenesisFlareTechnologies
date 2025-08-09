@@ -1,6 +1,6 @@
 
 import nodemailer from "nodemailer"
-
+import 'dotenv/config';
 interface DataInterface {
     name: string;
     email: string;
@@ -12,11 +12,8 @@ interface DataInterface {
 
 }
 export const sendMail = async (data: DataInterface) => {
-
-
-
-
     try {
+
         const { name, email, phone, businessType, message } = data;
         // Setup transporter
         const transporter = nodemailer.createTransport({
@@ -29,7 +26,8 @@ export const sendMail = async (data: DataInterface) => {
 
         const mailOptions = {
             from: `"Growly" <${process.env.EMAIL_USER}>`,
-            to: "to: hr@geneisisflare.com", // hr email
+            to: "nitinkumar7h@gmail.com", // hr email
+            // to: "to: hr@geneisisflare.com", // hr email
             subject: "New Demo Request from Growly Landing Page",
             html: `
         <h2>New Demo Request</h2>
