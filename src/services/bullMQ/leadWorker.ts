@@ -1,4 +1,4 @@
-// src/workers/leadWorker.ts
+
 import { Worker } from 'bullmq';
 import { Redis } from 'ioredis';
 import { sendMail } from '../nodeMailer/mailService.js';

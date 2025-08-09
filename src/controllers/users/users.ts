@@ -4,6 +4,7 @@ import { Lead } from "../../model/lead.js";
 
 
 import { leadQueue } from "../../services/bullMQ/leadQueue.js";
+import { dataProduceToKafka } from "../../services/kafka/kafka.js";
 
 export const home = (req: Request, res: Response) => {
     res.send("Hello From Server 👌")
@@ -20,10 +21,14 @@ export const leadData = async (req: Request, res: Response) => {
             console.log("❌ Email already exist!")
             return res.status(400).send({ message: "Email already exist", status: false })
         }
+
+        // Publish data to kafka
+        dataProduceToKafka(req.body)
+
         //save data
-        const lead = new Lead(req.body);
-        await lead.save();
-        console.log("✅ Lead submitted successfully!")
+        // const lead = new Lead(req.body);
+        // await lead.save();
+        // console.log("✅ Lead submitted successfully!")
 
         // Push to BullMQ
         await leadQueue.add('newLead', req.body, {
